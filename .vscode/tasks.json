@@ -1,0 +1,64 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build debug",
+            "type": "cppbuild",
+            "command": "clang++",
+            "args": [
+                "-Werror",
+                "-fcolor-diagnostics",
+                "-std=c++20",
+                "-O0",
+                "-g",
+                "-o",
+                "${workspaceFolder}/bin/${workspaceFolderBasename}-debug",
+                "-fuse-ld=lld",
+                "${workspaceFolder}/src/*.cpp"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "reveal": "always",
+                "clear": true
+            },
+            "problemMatcher": "$gcc"
+        },
+        {
+            "label": "build release",
+            "type": "cppbuild",
+            "command": "clang++",
+            "args": [
+                "-Werror",
+                "-fcolor-diagnostics",
+                "-std=c++20",
+                "-O3",
+                "-o",
+                "${workspaceFolder}/bin/${workspaceFolderBasename}",
+                "-fuse-ld=lld",
+                "${workspaceFolder}/src/*.cpp"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "reveal": "always",
+                "clear": true
+            },
+            "problemMatcher": "$gcc"
+        },
+        {
+            "label": "clean",
+            "type": "shell",
+            "linux": {
+                "command": "rm -rfv ${workspaceFolder}/bin/*"
+            },
+            "problemMatcher": []
+        }
+    ]
+}
